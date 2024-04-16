@@ -12,6 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false, // 우측 상단 debug를 제거합니다.
       home: HomeScreen(),
     );
   }

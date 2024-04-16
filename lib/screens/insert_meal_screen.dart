@@ -13,7 +13,27 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("입력창"),
+          backgroundColor: const Color(0xFF188852),
+          title: const Text(
+            "관리자 입력 창",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: const SingleChildScrollView(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "오늘 급식을 입력해주세요!",
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
         ),
       ),
     );
