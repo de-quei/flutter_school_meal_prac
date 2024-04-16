@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,12 +11,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String getToday() {
-    //오늘 날짜 불러오기
-    DateTime now = DateTime.now();
-    DateFormat formatter = DateFormat('yyyy년 MM월 dd일 EEEE');
-    String strToday = formatter.format(now);
-    return strToday;
+  List<dynamic> mealData = []; // JSON 데이터를 저장할 리스트
+
+  @override
+  void initState() {
+    super.initState();
+    loadJsonData(); // 앱이 시작될 때 JSON 데이터 로드
+  }
+
+  // assets/data.json 파일을 읽어와서 리스트에 저장하는 함수
+  Future<void> loadJsonData() async {
+    String jsonData = await rootBundle.loadString('assets/data.json');
+    setState(() {
+      mealData = json.decode(jsonData);
+    });
   }
 
   @override
@@ -30,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 18,
           ),
         ),
-        centerTitle: true, //title의 위치를 center로 설정
+        centerTitle: true, // title의 위치를 center로 설정
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,6 +65,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: 25,
                       ),
+                    ),
+                    const Text(
+                      '조식',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: mealData.length,
+                          itemBuilder: (context, index) {
+                            return Text(
+                              '${mealData[index]["breakfast"]}',
+                            );
+                          }),
                     ),
                   ],
                 ),
@@ -81,5 +107,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  String getToday() {
+    //오늘 날짜 불러오기
+    DateTime now = DateTime.now();
+    DateFormat formatter = DateFormat('yyyy년 MM월 dd일 EEEE');
+    String strToday = formatter.format(now);
+    return strToday;
   }
 }
