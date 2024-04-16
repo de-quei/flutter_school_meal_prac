@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/meal_input_widget.dart';
+
 class InsertMealScreen extends StatefulWidget {
   const InsertMealScreen({super.key});
 
@@ -45,11 +47,11 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
                 style: TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 20),
-              buildMealInputForm("조식", breakfastController),
+              MealInputWidget(mealType: "조식", controller: breakfastController),
               const SizedBox(height: 20),
-              buildMealInputForm("중식", lunchController),
+              MealInputWidget(mealType: "중식", controller: lunchController),
               const SizedBox(height: 20),
-              buildMealInputForm("석식", dinnerController),
+              MealInputWidget(mealType: "석식", controller: dinnerController),
               const SizedBox(height: 20),
               ElevatedButton(
                 // 적용 버튼
@@ -70,24 +72,6 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildMealInputForm(String mealType, TextEditingController controller) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "$mealType 입력",
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        TextFormField(
-          controller: controller,
-          decoration: InputDecoration(
-            hintText: "$mealType을 입력하세요",
-          ),
-        ),
-      ],
     );
   }
 }
