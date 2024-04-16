@@ -10,6 +10,12 @@ class InsertMealScreen extends StatefulWidget {
 class _InsertMealScreenState extends State<InsertMealScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("입력창"),
+        ),
+      ),
+    );
   }
 }

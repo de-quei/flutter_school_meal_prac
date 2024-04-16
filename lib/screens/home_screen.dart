@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'dart:convert';
 
 import '../widgets/meal_widget.dart';
+import 'insert_meal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -150,10 +151,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       backgroundColor: Colors.red,
                     ),
                   );
-                } else {
-                  // 비어있지 않으면 다이얼로그 닫기
+                } else if (password == '000000') {
+                  // 입력값과 비밀번호가 동일한지 확인
                   Navigator.of(context).pop();
-                  // 비밀번호 처리 로직 추가
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const InsertMealScreen(),
+                    ),
+                  );
+                } else if (password != '000000') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('비밀번호가 일치하지 않습니다.'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
                 }
               },
               child: const Text(
