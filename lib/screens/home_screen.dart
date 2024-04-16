@@ -117,8 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void showInputDialog(BuildContext context) {
-    TextEditingController passwordController =
-        TextEditingController(); // 컨트롤러 추가
+    TextEditingController passwordController = TextEditingController();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -130,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           content: TextField(
-            controller: passwordController, // 컨트롤러 연결
+            controller: passwordController,
             decoration: const InputDecoration(
               hintText: "분실 시 담당 선생님께 문의",
               hintStyle: TextStyle(fontSize: 13),
@@ -142,17 +141,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: const Color(0xFF188852),
               ),
               onPressed: () {
-                String password = passwordController.text.trim(); // 입력값 가져오기
+                String password = passwordController.text.trim();
+                // 입력란이 비었을 때
                 if (password.isEmpty) {
-                  // 입력값이 비어있는지 확인
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('비밀번호를 입력해주세요.'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                } else if (password == '000000') {
-                  // 입력값과 비밀번호가 동일한지 확인
+                  showSnackBar(context, '비밀번호를 입력해주세요.', Colors.red);
+                }
+                // 비밀번호가 일치할 때
+                else if (password == '000000') {
                   Navigator.of(context).pop();
                   Navigator.push(
                     context,
@@ -160,13 +155,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => const InsertMealScreen(),
                     ),
                   );
-                } else if (password != '000000') {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('비밀번호가 일치하지 않습니다.'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
+                }
+                // 비밀번호가 일치하지 않을 때
+                else {
+                  showSnackBar(context, '비밀번호가 일치하지 않습니다.', Colors.red);
                 }
               },
               child: const Text(
@@ -190,6 +182,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         );
       },
+    );
+  }
+
+  void showSnackBar(
+      BuildContext context, String message, Color backgroundColor) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: backgroundColor,
+      ),
     );
   }
 }
