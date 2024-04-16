@@ -52,36 +52,34 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      getToday(), //오늘 날짜 불러오기
-                      style: const TextStyle(
-                        fontSize: 18,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    getToday(), //오늘 날짜 불러오기
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    const Text(
-                      "오늘 하루도 행복하세요!",
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
+                  ),
+                  const Text(
+                    "오늘 하루도 행복하세요!",
+                    style: TextStyle(
+                      fontSize: 25,
                     ),
-                    MealWidget(
-                      title: '조식',
-                      data: mealData.map((e) => e['breakfast']).toList(),
-                    ),
-                    MealWidget(
-                      title: '중식',
-                      data: mealData.map((e) => e['lunch']).toList(),
-                    ),
-                    MealWidget(
-                      title: '석식',
-                      data: mealData.map((e) => e['dinner']).toList(),
-                    ),
-                  ],
-                ),
+                  ),
+                  MealWidget(
+                    title: '조식',
+                    data: mealData.map((e) => e['breakfast']).toList(),
+                  ),
+                  MealWidget(
+                    title: '중식',
+                    data: mealData.map((e) => e['lunch']).toList(),
+                  ),
+                  MealWidget(
+                    title: '석식',
+                    data: mealData.map((e) => e['dinner']).toList(),
+                  ),
+                ],
               ),
             ),
           ),
