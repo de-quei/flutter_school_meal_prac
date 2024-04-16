@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () {
-                showInputDiolog(context);
+                showInputDialog(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF188852),
@@ -115,7 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return strToday;
   }
 
-  void showInputDiolog(BuildContext context) {
+  void showInputDialog(BuildContext context) {
+    TextEditingController passwordController =
+        TextEditingController(); // 컨트롤러 추가
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -126,8 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 15,
             ),
           ),
-          content: const TextField(
-            decoration: InputDecoration(
+          content: TextField(
+            controller: passwordController, // 컨트롤러 연결
+            decoration: const InputDecoration(
               hintText: "분실 시 담당 선생님께 문의",
               hintStyle: TextStyle(fontSize: 13),
             ),
@@ -138,7 +141,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: const Color(0xFF188852),
               ),
               onPressed: () {
-                Navigator.of(context).pop(); // 기능 변경하기
+                String password = passwordController.text.trim(); // 입력값 가져오기
+                if (password.isEmpty) {
+                  // 입력값이 비어있는지 확인
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('비밀번호를 입력해주세요.'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                } else {
+                  // 비어있지 않으면 다이얼로그 닫기
+                  Navigator.of(context).pop();
+                  // 비밀번호 처리 로직 추가
+                }
               },
               child: const Text(
                 "등록",
