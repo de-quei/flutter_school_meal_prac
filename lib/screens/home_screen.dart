@@ -19,6 +19,24 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true, //title의 위치를 center로 설정
       ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text(
+              "급식 등록하기",
+              style: TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF188852),
+              fixedSize: Size(MediaQuery.of(context).size.width, 50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
