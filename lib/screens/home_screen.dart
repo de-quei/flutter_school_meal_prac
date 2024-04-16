@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const Text(
-                    "오늘 하루도 행복하세요!",
+                    "맛있는거 먹고 오늘도 화이팅!",
                     style: TextStyle(
                       fontSize: 25,
                     ),
