@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // assets/data.json 파일을 읽어와서 리스트에 저장하는 함수
   Future<void> loadJsonData() async {
-    String jsonData = await rootBundle.loadString('assets/data.json');
+    String jsonData = await rootBundle.loadString('assets/json/data.json');
     setState(() {
       mealData = json.decode(jsonData);
     });
