@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +9,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String getToday() {
+    //오늘 날짜 불러오기
+    DateTime now = DateTime.now();
+    DateFormat formatter = DateFormat('yyyy년 MM월 dd일 EEEE');
+    String strToday = formatter.format(now);
+    return strToday;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +38,26 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Expanded 위젯 추가
           Expanded(
-            child: Container(
-              //data.json을 불러올 부분
-              child: const Column(
-                children: [],
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      getToday(), //오늘 날짜 불러오기
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    const Text(
+                      "오늘 하루도 행복하세요!",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
