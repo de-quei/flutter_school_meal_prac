@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 
+import '../widgets/meal_widget.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -66,21 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 25,
                       ),
                     ),
-                    const Text(
-                      '조식',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    MealWidget(
+                      title: '조식',
+                      data: mealData.map((e) => e['breakfast']).toList(),
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: mealData.length,
-                          itemBuilder: (context, index) {
-                            return Text(
-                              '${mealData[index]["breakfast"]}',
-                            );
-                          }),
+                    MealWidget(
+                      title: '중식',
+                      data: mealData.map((e) => e['lunch']).toList(),
+                    ),
+                    MealWidget(
+                      title: '석식',
+                      data: mealData.map((e) => e['dinner']).toList(),
                     ),
                   ],
                 ),
