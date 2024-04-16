@@ -86,7 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showInputDiolog(context);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF188852),
                 fixedSize: Size(MediaQuery.of(context).size.width, 50),
@@ -111,5 +113,54 @@ class _HomeScreenState extends State<HomeScreen> {
     DateFormat formatter = DateFormat('yyyy년 MM월 dd일 EEEE');
     String strToday = formatter.format(now);
     return strToday;
+  }
+
+  void showInputDiolog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            "관리자 비밀번호를 입력해주세요.",
+            style: TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          content: const TextField(
+            decoration: InputDecoration(
+              hintText: "분실 시 담당 선생님께 문의",
+              hintStyle: TextStyle(fontSize: 13),
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF188852),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(); // 기능 변경하기
+              },
+              child: const Text(
+                "등록",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                "취소",
+                style: TextStyle(
+                  color: Color(0xFF188852),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
