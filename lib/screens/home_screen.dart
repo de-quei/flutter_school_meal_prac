@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,12 @@ class HomeScreen extends StatelessWidget {
         children: [
           // Expanded 위젯 추가
           Expanded(
-            child: Container(),
+            child: Container(
+              //data.json을 불러올 부분
+              child: const Column(
+                children: [],
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.all(10.0),
