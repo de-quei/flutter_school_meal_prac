@@ -26,6 +26,14 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
             ),
           ),
           centerTitle: true,
+          leading: IconButton(
+            color: Colors.white,
+            // 왼쪽 화살표 아이콘
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context); // 뒤로 가기 기능 수행
+            },
+          ),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
